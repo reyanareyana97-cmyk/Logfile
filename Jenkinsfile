@@ -32,5 +32,11 @@ pipeline {
                 bat 'mvn test'
             }
         }
+        stage('Docker Version') {
+    steps {
+        bat 'docker --version'
+        bat 'docker info'
+    }
+}
     }
 }
