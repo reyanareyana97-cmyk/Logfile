@@ -38,5 +38,10 @@ pipeline {
         bat 'docker info'
     }
 }
+        stage('Build Docker Image') {
+    steps {
+        bat 'docker build -t logfile-app .'
+    }
+}
     }
 }
