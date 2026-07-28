@@ -38,6 +38,12 @@ pipeline {
         bat 'docker info'
     }
 }
+        stage('Verify JAR') {
+    steps {
+        bat 'dir'
+        bat 'dir target'
+    }
+}
         stage('Build Docker Image') {
     steps {
         bat 'docker build -t logfile-app .'
