@@ -21,33 +21,29 @@ pipeline {
             }
         }
 
-        stage('Check Maven') {
+        stage('Build Application') {
             steps {
-                bat 'echo %PATH%'
+                bat 'mvn clean package'
             }
         }
 
-        stage('Run Tests') {
+        stage('Docker Version') {
             steps {
-                bat 'mvn test'
+                bat 'docker --version'
+                bat 'docker info'
             }
         }
-        stage('Docker Version') {
-    steps {
-        bat 'docker --version'
-        bat 'docker info'
-    }
-}
+
         stage('Verify JAR') {
-    steps {
-        bat 'dir'
-        bat 'dir target'
-    }
-}
+            steps {
+                bat 'dir target'
+            }
+        }
+
         stage('Build Docker Image') {
-    steps {
-        bat 'docker build -t logfile-app .'
-    }
-}
+            steps {
+                bat 'docker build -t logfile-app .'
+            }
+        }
     }
 }
